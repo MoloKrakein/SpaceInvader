@@ -100,8 +100,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 76
-      y: 97
+      x: 140
+      y: 76
       width: 65
       height: 52
     spriteID: ce3ce7c60b2fd3b4e865aa3d289f82e5
@@ -113,7 +113,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 75, y: 96}
+    uvTransform: {x: 139, y: 75}
     spritePosition: {x: 30, y: 31}
   - name: Cover
     originalName: 
@@ -123,7 +123,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 140
       width: 128
       height: 85
     spriteID: 8943bd1e943e5ce428be72290f4408ce
@@ -135,9 +135,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 3, y: 3}
+    uvTransform: {x: 3, y: 139}
     spritePosition: {x: -1, y: 23}
-  - name: Enemy
+  - name: Enemy neon
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -146,6 +146,28 @@ ScriptedImporter:
       serializedVersion: 2
       x: 140
       y: 4
+      width: 64
+      height: 64
+    spriteID: 8f2b667602c4f0e438ce861cfb57a5e8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 138, y: 3}
+    spritePosition: {x: 30, y: 31}
+  - name: Enemy
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 233
       width: 64
       height: 64
     spriteID: aa79a76bd1c478a43a805cd8b9dc1859
@@ -157,7 +179,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 138, y: 3}
+    uvTransform: {x: 2, y: 232}
     spritePosition: {x: 30, y: 31}
   - name: MissileE
     originalName: 
@@ -166,8 +188,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 212
-      y: 4
+      x: 213
+      y: 76
       width: 28
       height: 49
     spriteID: ea0eee6fd143f064ebc00c7e82f71500
@@ -179,7 +201,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 211, y: 3}
+    uvTransform: {x: 212, y: 75}
     spritePosition: {x: 49, y: 38}
   - name: MissileP
     originalName: 
@@ -188,8 +210,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 149
-      y: 97
+      x: 212
+      y: 4
       width: 28
       height: 49
     spriteID: e230cdb217164d44fa287e9ad9fa186c
@@ -201,7 +223,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 148, y: 96}
+    uvTransform: {x: 211, y: 3}
     spritePosition: {x: 49, y: 42}
   - name: Player
     originalName: 
@@ -211,7 +233,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 97
+      y: 305
       width: 64
       height: 64
     spriteID: fca04e3c3590fb24ab55922578476f86
@@ -223,8 +245,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 3, y: 95}
+    uvTransform: {x: 3, y: 303}
     spritePosition: {x: 31, y: 30}
+  - name: Background
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 128
+      height: 128
+    spriteID: 0e396e127208a8f4fac2d9c24b1ff60f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
     parts: []
@@ -305,7 +349,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: ce3ce7c60b2fd3b4e865aa3d289f82e5
     layerID: 52
-    mosaicPosition: {x: 76, y: 97}
+    mosaicPosition: {x: 140, y: 76}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -315,7 +359,17 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 8943bd1e943e5ce428be72290f4408ce
     layerID: 56
-    mosaicPosition: {x: 4, y: 4}
+    mosaicPosition: {x: 4, y: 140}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Enemy neon
+    spriteName: Enemy neon
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8f2b667602c4f0e438ce861cfb57a5e8
+    layerID: 58
+    mosaicPosition: {x: 140, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -325,7 +379,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: aa79a76bd1c478a43a805cd8b9dc1859
     layerID: 13
-    mosaicPosition: {x: 140, y: 4}
+    mosaicPosition: {x: 4, y: 233}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -335,7 +389,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: ea0eee6fd143f064ebc00c7e82f71500
     layerID: 10
-    mosaicPosition: {x: 212, y: 4}
+    mosaicPosition: {x: 213, y: 76}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -345,7 +399,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: e230cdb217164d44fa287e9ad9fa186c
     layerID: 8
-    mosaicPosition: {x: 149, y: 97}
+    mosaicPosition: {x: 212, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -355,20 +409,20 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: fca04e3c3590fb24ab55922578476f86
     layerID: 4
-    mosaicPosition: {x: 4, y: 97}
+    mosaicPosition: {x: 4, y: 305}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: Background
-    spriteName: 
+    spriteName: Background
     isGroup: 0
     parentIndex: -1
     spriteID: 0e396e127208a8f4fac2d9c24b1ff60f
     layerID: 1
-    mosaicPosition: {x: 0, y: 0}
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
-    isImported: 0
-    isVisible: 0
+    isImported: 1
+    isVisible: 1
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   generateGOHierarchy: 0
