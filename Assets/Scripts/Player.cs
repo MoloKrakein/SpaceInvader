@@ -17,15 +17,21 @@ public class Player : MonoBehaviour
     void Update()
     {
         Vector3 position = transform.position;
-
-        // use unity new input system
-        position.x += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        position.y += Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        // if horizontal input is not 0
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            position.x -= speed * Time.deltaTime;
+        }
+        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            position.x += speed * Time.deltaTime;
+        }
 
         Vector3 screenLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
-        Vector3 screenRight = Camera.main.ScreenToWorldPoint(Vector3.right);
+        Vector3 screenRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
 
         position.x = Mathf.Clamp(position.x, screenLeft.x, screenRight.x);
+        transform.position = position;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -44,6 +50,14 @@ public class Player : MonoBehaviour
                 killed();
             }
             Destroy(gameObject);
+        }
+    }
+
+    private void Shoot(){
+        if(isShoot){
+            isShoot = false;
+            // GameObject bullet = Instantiate(Resources.Load<GameObject>("Bullet"));
+            // bullet.transform.position = transform.position;
         }
     }
 }
