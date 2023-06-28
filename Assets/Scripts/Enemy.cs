@@ -34,11 +34,12 @@ public class Enemy : MonoBehaviour
         spriteRenderer.sprite = animationSprites[animationFrame];
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Missile")) {
-            killed?.Invoke(this);
-        }
+       if(collider.gameObject.layer == LayerMask.NameToLayer("P Missile")){
+        this.killed.Invoke(this);
+          this.gameObject.SetActive(false);
+       }
     }
 
     // Update is called once per frame

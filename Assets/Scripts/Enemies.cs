@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemies : MonoBehaviour
@@ -12,8 +13,8 @@ public class Enemies : MonoBehaviour
 
     public int TotalKilled{ get; private set; }
     public int TotalAlive => TotalAmount - TotalKilled;
-    public int TotalAmount => rows * columns;
-    public float percentKilled => (float)TotalKilled / (float)TotalAmount;
+    public int TotalAmount => this.rows * this.columns;
+    public float percentKilled => (float)this.TotalKilled / (float)this.TotalAmount;
 
     [Header("Grid Management")]
     public int rows = 5;
@@ -98,8 +99,10 @@ public class Enemies : MonoBehaviour
    private void Update()
     {
         
-       float speed = this.speed.Evaluate(percentKilled);
-        transform.position += direction * speed * Time.deltaTime;
+    //    float speed = this.speed.Evaluate(percentKilled);
+        // transform.position += direction * speed * Time.deltaTime;
+
+        this.transform.position += direction * speed.Evaluate(percentKilled) * Time.deltaTime;
 
         // Transform the viewport to world coordinates so we can check when the
         // invaders reach the edge of the screen
@@ -148,4 +151,6 @@ public class Enemies : MonoBehaviour
             child.gameObject.SetActive(true);
         }
     }
+
+
 }
