@@ -5,13 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 5f;
+
+    public Projectile projectileManager;
+    public float shootModifier = 1f;
     public System.Action killed;
     public bool isShoot{get;private set;}
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -35,7 +34,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            isShoot = true;
+            Shoot();
         }
 
 
@@ -43,21 +42,30 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy")|| collision.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
         {
             if (killed != null)
             {
-                killed();
+                killed.Invoke();
             }
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 
     private void Shoot(){
-        if(isShoot){
-            isShoot = false;
-            // GameObject bullet = Instantiate(Resources.Load<GameObject>("Bullet"));
-            // bullet.transform.position = transform.position;
+        if(!isShoot){
+            Debug.Log("Shoot");
+            isShoot = true;
+            Vector3 shootPosition = transform.position + Vector3.up * shootModifier;
+            Projectile projectile = Instantiate(projectileManager, shootPosition, Quaternion.identity);
+
+            projectile.OnProjectileDestroyed += OnProjectileDestroyed;
         }
     }
+
+    private void OnProjectileDestroyed(Projectile projectile){
+        isShoot = false;
+    }
+
+
 }

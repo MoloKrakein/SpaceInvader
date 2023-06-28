@@ -59,15 +59,8 @@ public class Enemies : MonoBehaviour
     private void MissileShoot()
     {
         int amountAlive = TotalAlive;
-        if (amountAlive > 0) {
-            // Pick a random invader to fire the missile
-            int randomIndex = Random.Range(0, amountAlive);
-            Enemy randomInvader = GetAliveEnemy(randomIndex);
-
-            // Spawn the missile
-            // Projectile missile = Instantiate(missilePrefab, transform);
-            // missile.transform.position = randomInvader.transform.position;
-            // missile.direction = Vector3.down;
+        if (amountAlive == 0) {
+            return;
         }
     }
 
@@ -102,27 +95,57 @@ public class Enemies : MonoBehaviour
     // }
 
     // Update is called once per frame
-    void Update()
+   private void Update()
     {
         
-        float speed = this.speed.Evaluate(percentKilled);
+       float speed = this.speed.Evaluate(percentKilled);
         transform.position += direction * speed * Time.deltaTime;
 
-        Vector3 min = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        Vector3 max = Camera.main.ViewportToWorldPoint(Vector3.one);
+        // Transform the viewport to world coordinates so we can check when the
+        // invaders reach the edge of the screen
+        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
 
-        foreach (Transform enemy in transform) {
-           if(!enemy.gameObject.activeInHierarchy) continue;
-                 if (direction == Vector3.right && enemy.position.x >= (min.x - 1f))
+        // The invaders will advance to the next row after reaching the edge of
+        // the screen
+        foreach (Transform enemy in transform)
+        {
+            // Skip any invaders that have been killed
+            if (!enemy.gameObject.activeInHierarchy) {
+                continue;
+            }
+
+            // Check the left edge or right edge based on the current direction
+            if (direction == Vector3.right && enemy.position.x >= (rightEdge.x - 1f))
             {
-                // MoveRow();
+                AdvanceRow();
                 break;
             }
-            else if (direction == Vector3.left && enemy.position.x <= (max.x + 1f))
+            else if (direction == Vector3.left && enemy.position.x <= (leftEdge.x + 1f))
             {
-                // MoveRow();
+                AdvanceRow();
                 break;
             }
+        }
+    }
+
+    private void AdvanceRow()
+    {
+        direction = new Vector3(-direction.x, 0f, 0f);
+
+        // Move the entire grid of invaders down a row
+        Vector3 position = transform.position;
+        position.y -= 1f;
+        transform.position = position;
+    }
+
+    private void resetEnemies()
+    {
+        transform.position = initialPosition;
+        direction = Vector3.right;
+        TotalKilled = 0;
+        foreach (Transform child in transform) {
+            child.gameObject.SetActive(true);
         }
     }
 }
