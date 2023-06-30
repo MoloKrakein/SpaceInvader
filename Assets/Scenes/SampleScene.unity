@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   projectileManager: {fileID: 5901828927805930566, guid: 5e79f93493d76a7479338fa048ff8531, type: 3}
+  shootModifier: 1
 --- !u!1 &244527138
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,19 +348,19 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.25
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: 8
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -658,7 +659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7103171692570465927, guid: cc5c1864f5dc30a429c0fa976e9cb8c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27
+      value: 43.7
       objectReference: {fileID: 0}
     - target: {fileID: 7103171692570465927, guid: cc5c1864f5dc30a429c0fa976e9cb8c6, type: 3}
       propertyPath: m_LocalPosition.z

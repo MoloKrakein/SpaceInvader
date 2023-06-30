@@ -25,7 +25,9 @@ public class Enemies : MonoBehaviour
     [Header("Missiles Management")]
     // public Projectile missilePrefab;
     public float missileSpawnRate = 1f;
+    public Projectile missilePrefab;
 
+    public float missileSpeed = 5f;
 
     private void Awake() {
         initialPosition = transform.position;
@@ -53,17 +55,25 @@ public class Enemies : MonoBehaviour
     }
     void Start()
     {
-        InvokeRepeating(nameof(MissileShoot), missileSpawnRate, missileSpawnRate);
+        InvokeRepeating(nameof(MissileShoot), this.missileSpawnRate, this.missileSpawnRate);
         
     }
 
     private void MissileShoot()
     {
         int amountAlive = TotalAlive;
-        if (amountAlive == 0) {
-            return;
-        }
-    }
+       foreach (Transform enemy in this.transform){
+              if (!enemy.gameObject.activeInHierarchy){
+                continue;
+                }
+              if (Random.value < (1f / (float)amountAlive)) {
+                Enemy invader = enemy.GetComponent<Enemy>();
+                Instantiate(this.missilePrefab, enemy.position, Quaternion.identity);
+                break;
+              }
+              }
+       }
+    
 
     private Enemy GetAliveEnemy(int index)
     {
@@ -86,16 +96,6 @@ public class Enemies : MonoBehaviour
         killed?.Invoke(enemy);
     }
 
-    // private void MoveRow()
-    // {
-    //     direction = new Vector3(-direction.x, 0f, 0f);
-
-    //     Vector3 position = transform.position;
-    //     position.y -= 1f;
-    //     transform.position = position;
-    // }
-
-    // Update is called once per frame
    private void Update()
     {
         
