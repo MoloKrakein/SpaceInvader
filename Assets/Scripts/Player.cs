@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -42,12 +43,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy")|| collision.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy")|| collision.gameObject.layer == LayerMask.NameToLayer("E Missile"))
         {
-            if (killed != null)
-            {
-                killed.Invoke();
-            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // if (killed != null)
+            // {
+            //     killed.Invoke();
+            // }
             // Destroy(gameObject);
         }
     }

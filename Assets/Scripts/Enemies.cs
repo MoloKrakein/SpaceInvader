@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Enemies : MonoBehaviour
@@ -94,6 +95,11 @@ public class Enemies : MonoBehaviour
     {
         TotalKilled++;
         killed?.Invoke(enemy);
+
+        if(TotalKilled >= TotalAmount) {
+            resetEnemies();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
    private void Update()

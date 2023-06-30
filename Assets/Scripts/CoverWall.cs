@@ -9,11 +9,13 @@ using UnityEngine.UI;
 public class CoverWall : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer { get; private set; }
-    public BoxCollider2D collider { get; private set; }
+
+    public new BoxCollider2D collider { get; private set; }
+
 
     public Texture2D splashTexture;
 
-    public Texture2D originalTexture;
+    public Texture2D originalTexture{ get; private set; }
 
     private void Awake()
     {
@@ -21,7 +23,7 @@ public class CoverWall : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         originalTexture = spriteRenderer.sprite.texture;
 
-
+        resetWall();
     }
 
     private void resetWall()
@@ -40,18 +42,19 @@ public class CoverWall : MonoBehaviour
         copy.SetPixels(source.GetPixels());
         copy.Apply();
 
-        Sprite newSprite = Sprite.Create(copy, spriteRenderer.sprite.rect, spriteRenderer.sprite.pivot);
-        spriteRenderer.sprite = newSprite;
+        Sprite sprite = Sprite.Create(copy, spriteRenderer.sprite.rect, new Vector2(0.5f, 0.5f), spriteRenderer.sprite.pixelsPerUnit);
+        spriteRenderer.sprite = sprite;
     }
 
     public bool checkpoint(Vector3 hit, out int px, out int py)
     {
         Vector3 localPos = transform.InverseTransformPoint(hit);
 
-        localPos.x += spriteRenderer.sprite.rect.width / 2;
-        localPos.y += spriteRenderer.sprite.rect.height / 2;
+        localPos.x += collider.size.x;
+        localPos.y += collider.size.y;
 
         Texture2D texture = spriteRenderer.sprite.texture;
+        
         px = (int)((localPos.x / collider.size.x) * texture.width);
         py = (int)((localPos.y / collider.size.y) * texture.height);
 
