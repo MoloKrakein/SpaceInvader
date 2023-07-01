@@ -17,6 +17,7 @@ public class CoverWall : MonoBehaviour
 
     public Texture2D originalTexture{ get; private set; }
 
+    public int health = 100;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -24,6 +25,9 @@ public class CoverWall : MonoBehaviour
         originalTexture = spriteRenderer.sprite.texture;
 
         resetWall();
+
+        // debug log box collider size
+        Debug.Log(collider.size);
     }
 
     private void resetWall()
@@ -58,6 +62,8 @@ public class CoverWall : MonoBehaviour
         px = (int)((localPos.x / collider.size.x) * texture.width);
         py = (int)((localPos.y / collider.size.y) * texture.height);
 
+        // debug log pixel position
+        // Debug.Log(px + " " + py);
         return texture.GetPixel(px, py).a != 0f;
     }
 
@@ -72,8 +78,8 @@ public class CoverWall : MonoBehaviour
         }
 
         Texture2D texture = spriteRenderer.sprite.texture;
-        px -= splashTexture.width / 2;
-        py -= splashTexture.height / 2;
+        px -= splashTexture.width;
+        py -= splashTexture.height;
 
         int startX = px;
 
@@ -94,6 +100,11 @@ public class CoverWall : MonoBehaviour
             py -= splashTexture.height;
         }
         texture.Apply();
+        health--;
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
 
         return true;
     }
@@ -111,5 +122,6 @@ public class CoverWall : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    
  
 }
