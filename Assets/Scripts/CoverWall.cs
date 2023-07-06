@@ -64,7 +64,7 @@ public class CoverWall : MonoBehaviour
 
         // debug log pixel position
         // Debug.Log(px + " " + py);
-        return texture.GetPixel(px, py).a != 0f;
+        return texture.GetPixel(px, py).a == 0f;
     }
 
     public bool splash(Vector3 hitPoint)
